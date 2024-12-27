@@ -1,3 +1,5 @@
+
+# 1 time traversal 
 def find(lst):
     if len(lst)==2:
         return min(lst[0],lst[1])
