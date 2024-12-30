@@ -2,6 +2,7 @@ def selection_sort(arr):
     for i in range(len(arr)):
         min_index=i
         for j in range(i+1,len(arr)):
+            # finding minimum element index to replace
             if arr[j]<arr[min_index]:
                 min_index=j
         print(i,min_index)
