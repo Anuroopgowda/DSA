@@ -1,0 +1,38 @@
+
+# dictonary based approach
+
+def find(nums, k):
+    def add_ele(dict1, num):
+        new_dict = dict(dict1)  # shallow copy to avoid in-place errors
+        new_combinations = []
+
+        for key, mat in dict1.items():
+            for l in mat:
+                new_comb = l + [num]
+                sum_val = sum(new_comb)
+                if sum_val not in new_dict:
+                    new_dict[sum_val] = []
+                new_dict[sum_val].append(new_comb)
+                new_combinations.append(new_comb)
+
+        # Also add [num] as a fresh starting combination
+        if num not in new_dict:
+            new_dict[num] = []
+        new_dict[num].append([num])
+        return new_dict
+
+    dict1 = {}
+    result = []
+
+    for num in nums:
+        if num > k:
+            continue
+        if (k - num) in dict1:
+            for l in dict1[k - num]:
+                result.append(l + [num])
+        dict1 = add_ele(dict1, num)
+
+    return result
+
+# Example test
+print(find([1, 2, 3, 4], 7))
